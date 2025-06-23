@@ -1,0 +1,30 @@
+/* Hero Image Animation */
+.hero-img {
+    max-width: 80%;
+    margin: 0 auto;
+    display: block;
+}
+
+.animate-float {
+    animation: float 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation-delay: 0s;
+    will-change: transform;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-15px) rotate(1deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(0deg);
+    }
+    75% {
+        transform: translateY(-15px) rotate(-1deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
