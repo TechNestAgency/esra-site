@@ -205,6 +205,8 @@
             padding: 8px;
             border-radius: 5px;
             transition: all 0.3s ease;
+            position: relative;
+            z-index: 1000;
         }
 
         .mobile-nav-toggle:hover {
@@ -218,6 +220,42 @@
 
         .mobile-nav-toggle:hover i {
             transform: scale(1.1);
+        }
+
+        /* Ensure header stays visible on scroll */
+        #header {
+            position: relative !important;
+            top: 0 !important;
+            z-index: 997;
+        }
+
+        /* Ensure top bar stays visible */
+        .top-bar {
+            position: relative;
+            z-index: 998;
+        }
+
+        /* Override scrolled class behavior to keep header visible */
+        body.scrolled #header {
+            position: relative !important;
+            top: 0 !important;
+            transform: none !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        body.scrolled .top-bar {
+            position: relative !important;
+            transform: none !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        /* Ensure mobile nav toggle stays visible */
+        body.scrolled .mobile-nav-toggle {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
         }
 
         /* Mobile Navigation Modal Styles */
@@ -2487,9 +2525,16 @@
                         
                         // Smooth scroll to target after modal closes
                         setTimeout(() => {
-                            targetElement.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
+                            // Calculate offset to account for header height
+                            const headerHeight = document.querySelector('#header').offsetHeight;
+                            const topBarHeight = document.querySelector('.top-bar').offsetHeight;
+                            const totalOffset = headerHeight + topBarHeight;
+                            
+                            const targetPosition = targetElement.offsetTop - totalOffset;
+                            
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
                             });
                         }, 300);
                     }
@@ -2502,9 +2547,12 @@
                 const mobileNavLinks = document.querySelectorAll('.mobile-nav-list a[href^="#"]');
                 
                 let currentSection = '';
+                const headerHeight = document.querySelector('#header').offsetHeight;
+                const topBarHeight = document.querySelector('.top-bar').offsetHeight;
+                const totalOffset = headerHeight + topBarHeight + 50; // Add some buffer
                 
                 sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 100;
+                    const sectionTop = section.offsetTop - totalOffset;
                     const sectionHeight = section.offsetHeight;
                     const scrollPosition = window.scrollY;
                     
@@ -2526,6 +2574,59 @@
             
             // Initial update
             updateMobileNavActive();
+
+            // Prevent the default scroll behavior from hiding header
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', function() {
+                const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Only update if there's a significant scroll difference
+                if (Math.abs(currentScrollTop - lastScrollTop) > 10) {
+                    lastScrollTop = currentScrollTop;
+                }
+            });
+
+            // Override the main.js scroll behavior to keep header visible
+            const originalToggleScrolled = window.toggleScrolled;
+            if (typeof originalToggleScrolled === 'function') {
+                window.toggleScrolled = function() {
+                    // Don't add scrolled class that hides header
+                    return;
+                };
+            }
+
+            // Ensure header and top bar are always visible
+            function ensureHeaderVisibility() {
+                const header = document.querySelector('#header');
+                const topBar = document.querySelector('.top-bar');
+                const mobileToggle = document.querySelector('.mobile-nav-toggle');
+                
+                if (header) {
+                    header.style.position = 'relative';
+                    header.style.top = '0';
+                    header.style.transform = 'none';
+                    header.style.opacity = '1';
+                    header.style.visibility = 'visible';
+                }
+                
+                if (topBar) {
+                    topBar.style.position = 'relative';
+                    topBar.style.transform = 'none';
+                    topBar.style.opacity = '1';
+                    topBar.style.visibility = 'visible';
+                }
+                
+                if (mobileToggle) {
+                    mobileToggle.style.display = 'block';
+                    mobileToggle.style.opacity = '1';
+                    mobileToggle.style.visibility = 'visible';
+                }
+            }
+
+            // Run on load and scroll
+            ensureHeaderVisibility();
+            window.addEventListener('scroll', ensureHeaderVisibility);
+            window.addEventListener('resize', ensureHeaderVisibility);
         });
     </script>
 
