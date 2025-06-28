@@ -31,12 +31,12 @@
 <body class="index-page">
 
 <div class="top-bar" style="background-color: #C27D37;">
-    <div class="container d-flex justify-content-between align-items-center">
-        <div class="contact-info d-flex align-items-center">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap">
+        <div class="contact-info d-flex align-items-center flex-wrap">
             <a href="mailto:info@esraacademy.com" style="color: white;" class="me-3"><i class="bi bi-envelope"></i> info@esraacademy.com</a>
             <a href="tel:+1234567890" style="color: white;"><i class="bi bi-phone"></i> +201500250404</a>
         </div>
-        <div class="social-links">
+        <div class="social-links d-flex">
             <a href="https://x.com/EsraInstitute?t=71KpHnWom03JmwC_-VvOig&s=09" class="me-2" target="_blank" rel="noopener"><i class="bi bi-twitter-x"></i></a>
             <a href="https://www.tiktok.com/@esra.institute?_t=ZS-8wWgAMJWDOK&_r=1" class="me-2" target="_blank" rel="noopener"><i class="bi bi-tiktok"></i></a>
             <a href="https://m.youtube.com/@esrainstitute-t9e" class="me-2" target="_blank" rel="noopener"><i class="bi bi-youtube"></i></a>
@@ -47,22 +47,19 @@
 </div>
 
 <header id="header" class="header d-flex align-items-center">
-    <div class="container position-relative d-flex align-items-center justify-content-between">
-
+    <div class="container position-relative d-flex align-items-center justify-content-between flex-wrap">
 
         <a href="{{ route('welcome') }}" class="logo d-flex align-items-center me-auto me-xl-0">
             <img src="{{ asset('2.svg') }}" alt="Esra Academy Logo">
             <span class="sitename ms-2" style="color: #558580;">Esra Institute</span>
         </a>
 
-
         <nav id="navmenu" class="navmenu">
-            <ul>
+            <ul class="d-flex flex-wrap justify-content-center">
                 <li><a href="#hero" class="active">Home</a></li>
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#team">Team</a></li>                <li><a href="{{ route('blog.index') }}">Blog</a></li>                <li><a href="#contact">Contact</a></li>
             </ul>
-            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 
         <a class="btn-getstarted" href="#enrollment" style="background-color: #558580; color: white;">Get Started</a>
@@ -76,9 +73,9 @@
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-            <div class="row align-items-center mb-5">
+            <div class="row align-items-center mb-5 flex-column-reverse flex-lg-row">
                 <div class="col-lg-6 mb-4 mb-lg-0">
-                    <div class="badge-wrapper mb-3">
+                    <div class="badge-wrapper mb-3 text-center text-lg-start">
                         <div class="d-inline-flex align-items-center rounded-pill" style="background-color:#C27D37; color: white; padding: .4rem .6rem .4rem .4rem">
                             <div class="icon-circle me-2" style="background-color: white; color:#C27D37; width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;">
                                 <i class="bi bi-bell"></i>
@@ -87,19 +84,19 @@
                         </div>
                     </div>
 
-                    <h1 class="hero-title mb-4" style="color: #558580; font-size: 3.2rem; font-weight: 700; text-shadow: 2px 2px 4px #558580;">Learning the Qur'an, The Arabic language And Islamic Studies</h1>
+                    <h1 class="hero-title mb-4 text-center text-lg-start" style="color: #558580; font-size: 3.2rem; font-weight: 700; text-shadow: 2px 2px 4px #558580;">Learning the Qur'an, The Arabic language And Islamic Studies</h1>
 
-                    <p class="hero-description mb-4" style="color: white;">Top quality Quran courses online are available
+                    <p class="hero-description mb-4 text-center text-lg-start" style="color: white;">Top quality Quran courses online are available
                         at times convenient for you.</p>
 
-                    <div class="cta-wrapper">
+                    <div class="cta-wrapper text-center text-lg-start">
                         <a href="#enrollment" class="btn btn-primary" style="background-color:#C27D37; color: white; border-color: #C27D37; padding: 12px 30px; font-size: 1.2rem;">Free Trial</a>
                     </div>
                 </div>
 
                 <div class="col-lg-6">
-                    <div class="hero-image animate-float" style="width: 100%;animation: float 3s ease-in-out infinite;">
-                        <img src="{{ asset('web_gif.gif') }}" alt="Business Growth" class="img-fluid hero-img" loading="lazy" style="width: 100%; height: auto;">
+                    <div class="hero-image animate-float text-center" style="width: 100%;animation: float 3s ease-in-out infinite;">
+                        <img src="{{ asset('web_gif.gif') }}" alt="Business Growth" class="img-fluid hero-img" loading="lazy" style="width: 100%; height: auto; max-width: 500px;">
                     </div>
                 </div>
             </div>
@@ -1854,9 +1851,6 @@
     <!-- Scroll Top -->
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Preloader -->
-    <div id="preloader"></div>
-
     <!-- Floating WhatsApp Icon -->
     <a href="https://wa.me/201500250404" class="whatsapp-float" target="_blank">
         <i class="bi bi-whatsapp"></i>
@@ -1949,30 +1943,83 @@
 
         @media (max-width: 767px) {
             .hero-title {
-                font-size: 2.5rem !important; /* Adjusted for smaller screens */
-                text-shadow: 1px 1px 3px rgb(21, 82, 225);
+                font-size: 2.2rem !important; /* Adjusted for smaller screens */
+                text-shadow: 1px 1px 2px #558580;
+                text-align: center;
+                line-height: 1.2;
             }
 
             .hero-description {
                 font-size: 1rem;
+                text-align: center;
             }
 
             .header .logo .sitename {
-                font-size: 1.5rem; /* Adjust logo text size */
+                font-size: 1.4rem; /* Adjust logo text size */
             }
 
             #header {
-                padding: 15px 0;
+                padding: 10px 0;
+            }
+            
+            .top-bar {
+                padding: 8px 0;
+            }
+            
+            .top-bar .container {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .top-bar .contact-info {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .top-bar .social-links {
+                justify-content: center;
             }
         }
 
         @media (max-width: 480px) {
             .hero-title {
-                font-size: 2rem !important; /* Further adjustment for very small screens */
+                font-size: 1.8rem !important; /* Further adjustment for very small screens */
+                text-align: center;
             }
             
             .header .logo .sitename {
                 font-size: 1.2rem;
+            }
+            
+            .top-bar .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+            }
+            
+            .top-bar .contact-info a {
+                font-size: 10px;
+            }
+            
+            .top-bar .social-links a {
+                font-size: 12px;
+                padding: 4px;
+                margin: 0 2px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .hero-title {
+                font-size: 1.6rem !important;
+            }
+            
+            .hero-description {
+                font-size: 0.85rem;
+            }
+            
+            .header .logo .sitename {
+                font-size: 1.1rem;
             }
         }
     </style>

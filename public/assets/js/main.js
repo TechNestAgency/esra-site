@@ -10,6 +10,27 @@
   "use strict";
 
   /**
+   * Prevent browser scroll restoration on page refresh
+   */
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  /**
+   * Force scroll to top on page load/refresh
+   */
+  window.addEventListener('beforeunload', function() {
+    window.scrollTo(0, 0);
+  });
+
+  /**
+   * Ensure page starts at top when DOM is ready
+   */
+  document.addEventListener('DOMContentLoaded', function() {
+    window.scrollTo(0, 0);
+  });
+
+  /**
    * Apply .scrolled class to the body as the page is scrolled down
    */
   function toggleScrolled() {
@@ -59,16 +80,6 @@
       e.stopImmediatePropagation();
     });
   });
-
-  /**
-   * Preloader
-   */
-  const preloader = document.querySelector('#preloader');
-  if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove();
-    });
-  }
 
   /**
    * Scroll top button
@@ -174,19 +185,28 @@
 
   /**
    * Correct scrolling position upon page load for URLs containing hash links.
+   * Only scroll if there's a hash in the URL and it's not just a page refresh.
    */
   window.addEventListener('load', function(e) {
-    if (window.location.hash) {
-      if (document.querySelector(window.location.hash)) {
+    // Only proceed if there's a hash in the URL
+    if (window.location.hash && window.location.hash !== '#') {
+      const targetElement = document.querySelector(window.location.hash);
+      if (targetElement) {
+        // Add a small delay to ensure the page is fully loaded
         setTimeout(() => {
-          let section = document.querySelector(window.location.hash);
-          let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
+          const scrollMarginTop = getComputedStyle(targetElement).scrollMarginTop;
           window.scrollTo({
-            top: section.offsetTop - parseInt(scrollMarginTop),
+            top: targetElement.offsetTop - parseInt(scrollMarginTop),
             behavior: 'smooth'
           });
-        }, 100);
+        }, 300);
       }
+    } else {
+      // If no hash or just '#', scroll to top
+      window.scrollTo({
+        top: 0,
+        behavior: 'instant'
+      });
     }
   });
 
@@ -211,5 +231,28 @@
   }
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
+
+  /**
+   * Final safeguard to prevent unwanted scrolling on page refresh
+   */
+  window.addEventListener('load', function() {
+    // Force scroll to top after everything is loaded
+    setTimeout(() => {
+      if (window.location.hash === '' || window.location.hash === '#') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'instant'
+        });
+      }
+    }, 100);
+  });
+
+  // Prevent any automatic scrolling during page load
+  window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+      // Page was loaded from back-forward cache
+      window.scrollTo(0, 0);
+    }
+  });
 
 })();
