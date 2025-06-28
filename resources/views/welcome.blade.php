@@ -26,18 +26,15 @@
     <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
     <!-- Main CSS File -->
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
-
-
-
 </head>
 
 <body class="index-page">
 
-<div class="top-bar">
+<div class="top-bar" style="background-color: #C27D37;">
     <div class="container d-flex justify-content-between align-items-center">
         <div class="contact-info d-flex align-items-center">
-            <a href="mailto:info@esraacademy.com" class="me-3"><i class="bi bi-envelope"></i> info@esraacademy.com</a>
-            <a href="tel:+1234567890"><i class="bi bi-phone"></i> +201500250404</a>
+            <a href="mailto:info@esraacademy.com" style="color: white;" class="me-3"><i class="bi bi-envelope"></i> info@esraacademy.com</a>
+            <a href="tel:+1234567890" style="color: white;"><i class="bi bi-phone"></i> +201500250404</a>
         </div>
         <div class="social-links">
             <a href="https://x.com/EsraInstitute?t=71KpHnWom03JmwC_-VvOig&s=09" class="me-2" target="_blank" rel="noopener"><i class="bi bi-twitter-x"></i></a>
@@ -53,7 +50,7 @@
     <div class="container position-relative d-flex align-items-center justify-content-between">
 
 
-        <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <a href="{{ route('welcome') }}" class="logo d-flex align-items-center me-auto me-xl-0">
             <img src="{{ asset('2.svg') }}" alt="Esra Academy Logo">
             <span class="sitename ms-2" style="color: #558580;">Esra Institute</span>
         </a>
@@ -63,50 +60,46 @@
             <ul>
                 <li><a href="#hero" class="active">Home</a></li>
                 <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="{{ route('blog.index') }}">Blog</a></li>
-            
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#team">Team</a></li>                <li><a href="{{ route('blog.index') }}">Blog</a></li>                <li><a href="#contact">Contact</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 
         <a class="btn-getstarted" href="#enrollment" style="background-color: #558580; color: white;">Get Started</a>
-
     </div>
 </header>
 
 <main class="main">
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section">
+    <section id="hero" class="hero section" style="background-color: #FFFFFF;">
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
 
             <div class="row align-items-center mb-5">
                 <div class="col-lg-6 mb-4 mb-lg-0">
                     <div class="badge-wrapper mb-3">
-                        <div class="d-inline-flex align-items-center rounded-pill" style="background-color:rgb(21, 82, 225); color: white; padding: .4rem .6rem .4rem .4rem">
-                            <div class="icon-circle me-2" style="background-color: white; color:rgb(21, 82, 225); width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;">
+                        <div class="d-inline-flex align-items-center rounded-pill" style="background-color:#C27D37; color: white; padding: .4rem .6rem .4rem .4rem">
+                            <div class="icon-circle me-2" style="background-color: white; color:#C27D37; width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;">
                                 <i class="bi bi-bell"></i>
                             </div>
                             <span class="badge-text me-3" style="font-size: .9rem;color: white;">Quran & Arabic Online</span>
                         </div>
                     </div>
 
-                    <h1 class="hero-title mb-4" style="color: white; font-size: 3.2rem; font-weight: 700; text-shadow: 2px 2px 4px rgb(21, 82, 225);">Learning the Qur'an, The Arabic language And Islamic Studies</h1>
+                    <h1 class="hero-title mb-4" style="color: #558580; font-size: 3.2rem; font-weight: 700; text-shadow: 2px 2px 4px #558580;">Learning the Qur'an, The Arabic language And Islamic Studies</h1>
 
                     <p class="hero-description mb-4" style="color: white;">Top quality Quran courses online are available
                         at times convenient for you.</p>
 
                     <div class="cta-wrapper">
-                        <a href="#enrollment" class="btn btn-primary" style="background-color:rgb(21, 82, 225); color: white; border-color: #558580; padding: 12px 30px; font-size: 1.2rem;">Free Trial</a>
+                        <a href="#enrollment" class="btn btn-primary" style="background-color:#C27D37; color: white; border-color: #C27D37; padding: 12px 30px; font-size: 1.2rem;">Free Trial</a>
                     </div>
                 </div>
 
                 <div class="col-lg-6">
-                    <div class="hero-image animate-float" style="width: 80%;animation: float 3s ease-in-out infinite;">
-                        <img src="{{ asset('hero.png') }}" alt="Business Growth" class="img-fluid hero-img" loading="lazy">
+                    <div class="hero-image animate-float" style="width: 100%;animation: float 3s ease-in-out infinite;">
+                        <img src="{{ asset('web_gif.gif') }}" alt="Business Growth" class="img-fluid hero-img" loading="lazy" style="width: 100%; height: auto;">
                     </div>
                 </div>
             </div>
@@ -1894,6 +1887,17 @@
             transition: transform 0.3s ease;
         }
 
+        /* Ensure GIF loops properly */
+        .hero-img {
+            animation: none !important; /* Remove any conflicting animations */
+        }
+
+        /* Fallback for GIF loading */
+        .hero-img[src*=".gif"] {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
         .top-bar .social-links a {
             transition: transform 0.3s ease;
         }
@@ -1941,6 +1945,35 @@
         .info-card p {
             font-size: 1rem;
             color: #666;
+        }
+
+        @media (max-width: 767px) {
+            .hero-title {
+                font-size: 2.5rem !important; /* Adjusted for smaller screens */
+                text-shadow: 1px 1px 3px rgb(21, 82, 225);
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .header .logo .sitename {
+                font-size: 1.5rem; /* Adjust logo text size */
+            }
+
+            #header {
+                padding: 15px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem !important; /* Further adjustment for very small screens */
+            }
+            
+            .header .logo .sitename {
+                font-size: 1.2rem;
+            }
         }
     </style>
 
@@ -2026,6 +2059,260 @@
             });
         });
     </script>
+
+    <!-- Comprehensive Course Modal -->
+    <div class="modal fade" id="comprehensiveModal" tabindex="-1" aria-labelledby="comprehensiveModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="comprehensiveModalLabel">Comprehensive Course</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="{{ asset('5.jpeg') }}" class="img-fluid rounded" alt="Comprehensive Course">
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Course Overview</h4>
+                            <p>Our most comprehensive program combining Quran, Islamic Studies, and Arabic Language in one complete curriculum designed for serious learners.</p>
+
+                            <h5>What You'll Learn:</h5>
+                            <ul>
+                                <li>Complete Quranic recitation and memorization</li>
+                                <li>Advanced Tajweed rules and application</li>
+                                <li>Comprehensive Arabic language skills</li>
+                                <li>Islamic studies and jurisprudence</li>
+                                <li>Practical application in daily life</li>
+                            </ul>
+
+                            <h5>Course Duration:</h5>
+                            <p>36 weeks (3 hours per week)</p>
+
+                            <h5>Level:</h5>
+                            <p>All Levels</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="#enrollment" class="btn btn-primary" style="background-color: #558580; border-color: #558580;">Enroll Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Arabic Modal (Arabic) -->
+    <div class="modal fade" id="arabicModalAr" tabindex="-1" aria-labelledby="arabicModalArLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="arabicModalArLabel">تعلم اللغة العربية</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="{{ asset('6.jpeg') }}" class="img-fluid rounded" alt="تعلم اللغة العربية">
+                        </div>
+                        <div class="col-md-6">
+                            <h4>نظرة عامة على الدورة</h4>
+                            <p>ابدأ رحلتك في تعلم اللغة العربية مع دورتنا المبتدئة. نركز على المفردات القرآنية والقواعد الأساسية لمساعدتك على فهم لغة القرآن.</p>
+
+                            <h5>ما ستتعلمه:</h5>
+                            <ul>
+                                <li>الأبجدية العربية والنطق الصحيح</li>
+                                <li>التراكيب النحوية الأساسية</li>
+                                <li>المفردات القرآنية الشائعة</li>
+                                <li>تكوين الجمل البسيطة</li>
+                                <li>مهارات القراءة والكتابة</li>
+                            </ul>
+
+                            <h5>مدة الدورة:</h5>
+                            <p>16 أسبوع (ساعتان في الأسبوع)</p>
+
+                            <h5>المستوى:</h5>
+                            <p>مبتدئ</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                    <a href="#enrollment" class="btn btn-primary" style="background-color: #558580; border-color: #558580;">سجل الآن</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Memorization Modal (Arabic) -->
+    <div class="modal fade" id="memorizationModalAr" tabindex="-1" aria-labelledby="memorizationModalArLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="memorizationModalArLabel">تحفيظ القرآن الكريم</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="{{ asset('7.jpeg') }}" class="img-fluid rounded" alt="تحفيظ القرآن الكريم">
+                        </div>
+                        <div class="col-md-6">
+                            <h4>نظرة عامة على الدورة</h4>
+                            <p>تعلم تقنيات فعالة لحفظ القرآن الكريم مع دورتنا المتخصصة في الحفظ. نهجنا المنظم يساعدك على الاحتفاظ بما تتعلمه مدى الحياة.</p>
+
+                            <h5>ما ستتعلمه:</h5>
+                            <ul>
+                                <li>تقنيات الحفظ والاستراتيجيات</li>
+                                <li>طرق المراجعة للاحتفاظ طويل المدى</li>
+                                <li>النطق الصحيح أثناء الحفظ</li>
+                                <li>فهم معنى الآيات</li>
+                                <li>بناء روتين يومي للحفظ</li>
+                            </ul>
+
+                            <h5>مدة الدورة:</h5>
+                            <p>مستمرة (جدول مرن)</p>
+
+                            <h5>المستوى:</h5>
+                            <p>جميع المستويات</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                    <a href="#enrollment" class="btn btn-primary" style="background-color: #558580; border-color: #558580;">سجل الآن</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tajweed Modal (Arabic) -->
+    <div class="modal fade" id="tajweedModalAr" tabindex="-1" aria-labelledby="tajweedModalArLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tajweedModalArLabel">تجويد القرآن الكريم</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="{{ asset('8.jpeg') }}" class="img-fluid rounded" alt="تجويد القرآن الكريم">
+                        </div>
+                        <div class="col-md-6">
+                            <h4>نظرة عامة على الدورة</h4>
+                            <p>أتقن فن تلاوة القرآن الكريم مع دورتنا الشاملة في التجويد. هذا البرنامج مصمم لمساعدتك على فهم وتطبيق قواعد التجويد بشكل صحيح.</p>
+
+                            <h5>ما ستتعلمه:</h5>
+                            <ul>
+                                <li>أحكام النون الساكنة والتنوين</li>
+                                <li>أحكام الميم الساكنة</li>
+                                <li>أحكام القلقلة</li>
+                                <li>النطق الصحيح للحروف العربية</li>
+                                <li>التطبيق العملي مع الآيات القرآنية</li>
+                            </ul>
+
+                            <h5>مدة الدورة:</h5>
+                            <p>12 أسبوع (ساعتان في الأسبوع)</p>
+
+                            <h5>المستوى:</h5>
+                            <p>مبتدئ إلى متوسط</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                    <a href="#enrollment" class="btn btn-primary" style="background-color: #558580; border-color: #558580;">سجل الآن</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Islamic Studies Modal (Arabic) -->
+    <div class="modal fade" id="islamicStudiesModalAr" tabindex="-1" aria-labelledby="islamicStudiesModalArLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="islamicStudiesModalArLabel">تعلم العلوم الإسلامية</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="{{ asset('9.jpeg') }}" class="img-fluid rounded" alt="تعلم العلوم الإسلامية">
+                        </div>
+                        <div class="col-md-6">
+                            <h4>نظرة عامة على الدورة</h4>
+                            <p>استكشف التراث الغني للمعرفة الإسلامية من خلال دورتنا الشاملة في العلوم الإسلامية. اكتسب فهماً أعمق للعقائد والتاريخ والممارسات الإسلامية.</p>
+
+                            <h5>ما ستتعلمه:</h5>
+                            <ul>
+                                <li>العقائد والمبادئ الإسلامية</li>
+                                <li>التاريخ والحضارة الإسلامية</li>
+                                <li>الفقه (الفقه الإسلامي)</li>
+                                <li>الأخلاق والآداب الإسلامية</li>
+                                <li>القضايا الإسلامية المعاصرة</li>
+                            </ul>
+
+                            <h5>مدة الدورة:</h5>
+                            <p>24 أسبوع (ساعتان في الأسبوع)</p>
+
+                            <h5>المستوى:</h5>
+                            <p>متوسط</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                    <a href="#enrollment" class="btn btn-primary" style="background-color: #558580; border-color: #558580;">سجل الآن</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comprehensive Course Modal (Arabic) -->
+    <div class="modal fade" id="comprehensiveModalAr" tabindex="-1" aria-labelledby="comprehensiveModalArLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="comprehensiveModalArLabel">الدورة الشاملة</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="{{ asset('10.jpeg') }}" class="img-fluid rounded" alt="الدورة الشاملة">
+                        </div>
+                        <div class="col-md-6">
+                            <h4>نظرة عامة على الدورة</h4>
+                            <p>برنامجنا الأكثر شمولية يجمع بين القرآن والعلوم الإسلامية واللغة العربية في منهج واحد متكامل مصمم للمتعلمين الجادين.</p>
+
+                            <h5>ما ستتعلمه:</h5>
+                            <ul>
+                                <li>التلاوة والحفظ الكامل للقرآن</li>
+                                <li>قواعد التجويد المتقدمة والتطبيق</li>
+                                <li>مهارات اللغة العربية الشاملة</li>
+                                <li>العلوم الإسلامية والفقه</li>
+                                <li>التطبيق العملي في الحياة اليومية</li>
+                            </ul>
+
+                            <h5>مدة الدورة:</h5>
+                            <p>36 أسبوع (3 ساعات في الأسبوع)</p>
+
+                            <h5>المستوى:</h5>
+                            <p>جميع المستويات</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                    <a href="#enrollment" class="btn btn-primary" style="background-color: #558580; border-color: #558580;">سجل الآن</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="pricing" class="pricing section light-background" data-aos="fade-up">
 </body>
 
 </html>

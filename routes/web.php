@@ -28,7 +28,7 @@ Route::get('/', function () {
         ->get();
         
     return view('welcome', compact('articles'));
-});
+})->name('welcome');
 
 // Blog Routes
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
