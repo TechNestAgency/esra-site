@@ -26,9 +26,104 @@
     <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
     <!-- Main CSS File -->
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+
+    <!-- Loading Spinner Styles -->
+    <style>
+        #loading-spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #558580 0%, #C27D37 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+
+        #loading-spinner.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .spinner-container {
+            text-align: center;
+            color: white;
+        }
+
+        .spinner {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        .spinner-logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .loading-text {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .loading-subtext {
+            font-size: 14px;
+            opacity: 0.8;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Hide body content while loading */
+        body.loading {
+            overflow: hidden;
+        }
+
+        /* Ensure content is hidden during loading */
+        .main-content {
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+
+        .main-content.loaded {
+            opacity: 1;
+        }
+    </style>
 </head>
 
-<body class="index-page">
+<body class="index-page loading">
+
+<!-- Loading Spinner -->
+<div id="loading-spinner">
+    <div class="spinner-container">
+        <img src="{{ asset('2.svg') }}" alt="Esra Institute Logo" class="spinner-logo">
+        <div class="spinner"></div>
+        <div class="loading-text">Esra Institute</div>
+        <div class="loading-subtext">Loading...</div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
 
 <div class="top-bar" style="background-color: #C27D37;">
     <div class="container d-flex justify-content-between align-items-center flex-wrap">
@@ -1840,6 +1935,8 @@
         </div>
     </section><!-- /Enrollment Form Section -->
 
+    </div><!-- /Main Content -->
+
     <footer id="footer" class="footer light-background">
         <div class="container text-center py-4">
             <p class="mb-2"><strong>WhatsApp:</strong> +20 1500250404</p>
@@ -2103,6 +2200,82 @@
                         submitBtn.prop('disabled', false).html(originalBtnText);
                     }
                 });
+            });
+        });
+
+        // Loading Spinner Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const mainContent = document.querySelector('.main-content');
+            const body = document.body;
+
+            // Function to hide loading spinner
+            function hideLoadingSpinner() {
+                // Add hidden class to spinner
+                loadingSpinner.classList.add('hidden');
+                
+                // Remove loading class from body
+                body.classList.remove('loading');
+                
+                // Show main content
+                mainContent.classList.add('loaded');
+                
+                // Remove spinner from DOM after transition
+                setTimeout(() => {
+                    loadingSpinner.style.display = 'none';
+                }, 500);
+            }
+
+            // Check if all resources are loaded
+            function checkIfLoaded() {
+                // Wait for images to load
+                const images = document.querySelectorAll('img');
+                let loadedImages = 0;
+                const totalImages = images.length;
+
+                if (totalImages === 0) {
+                    // No images, hide spinner immediately
+                    setTimeout(hideLoadingSpinner, 1000);
+                    return;
+                }
+
+                images.forEach(img => {
+                    if (img.complete) {
+                        loadedImages++;
+                    } else {
+                        img.addEventListener('load', () => {
+                            loadedImages++;
+                            if (loadedImages === totalImages) {
+                                setTimeout(hideLoadingSpinner, 500);
+                            }
+                        });
+                        img.addEventListener('error', () => {
+                            loadedImages++;
+                            if (loadedImages === totalImages) {
+                                setTimeout(hideLoadingSpinner, 500);
+                            }
+                        });
+                    }
+                });
+
+                // Fallback: hide spinner after 3 seconds regardless
+                setTimeout(() => {
+                    if (!loadingSpinner.classList.contains('hidden')) {
+                        hideLoadingSpinner();
+                    }
+                }, 3000);
+            }
+
+            // Start checking when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', checkIfLoaded);
+            } else {
+                checkIfLoaded();
+            }
+
+            // Also check on window load event
+            window.addEventListener('load', () => {
+                setTimeout(hideLoadingSpinner, 500);
             });
         });
     </script>
