@@ -577,7 +577,7 @@
 
                 <div class="col-lg-6">
                     <div class="hero-image animate-float text-center" style="width: 100%;animation: float 3s ease-in-out infinite;">
-                        <video src="{{ asset('web_vid.mp4') }}" alt="Business Growth" class="img-fluid hero-img" loading="lazy" style="width: 100%; height: auto; max-width: 500px;">
+                        <video src="{{ asset('web_vid.mp4') }}" alt="Business Growth" class="img-fluid hero-img" loading="lazy" style="width: 100%; height: auto; max-width: 500px;" autoplay loop muted>
                     </div>
                 </div>
             </div>
