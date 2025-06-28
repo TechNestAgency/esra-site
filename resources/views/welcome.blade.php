@@ -108,6 +108,320 @@
             opacity: 1;
         }
     </style>
+
+    <style>
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .whatsapp-float:hover {
+            color: white;
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+
+        /* Ensure GIF loops properly */
+        .hero-img {
+            animation: none !important; /* Remove any conflicting animations */
+        }
+
+        /* Fallback for GIF loading */
+        .hero-img[src*=".gif"] {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        .top-bar .social-links a {
+            transition: transform 0.3s ease;
+        }
+
+        .top-bar .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        .info-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease-in-out;
+            height: 100%;
+            text-align: center;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .info-card .icon-box {
+            margin-bottom: 20px;
+        }
+
+        .info-card .icon-box i {
+            font-size: 48px;
+            color: #558580; /* Use a color from the theme */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .info-card:hover .icon-box i {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .info-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .info-card p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* Mobile Navigation Styles */
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #558580;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-toggle:hover {
+            background-color: rgba(85, 133, 128, 0.1);
+            color: #558580;
+        }
+
+        .mobile-nav-toggle i {
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-nav-toggle:hover i {
+            transform: scale(1.1);
+        }
+
+        /* Mobile Navigation Modal Styles */
+        #mobileNavModal .modal-content {
+            border: none;
+            border-radius: 0;
+            min-height: 100vh;
+        }
+
+        #mobileNavModal .modal-header {
+            background: linear-gradient(135deg, #558580 0%, #C27D37 100%);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        #mobileNavModal .modal-header .btn-close {
+            filter: invert(1);
+            opacity: 0.8;
+        }
+
+        #mobileNavModal .modal-header .btn-close:hover {
+            opacity: 1;
+        }
+
+        #mobileNavModal .modal-body {
+            padding: 2rem 1.5rem;
+            background: #f8f9fa;
+        }
+
+        .mobile-nav {
+            margin-bottom: 2rem;
+        }
+
+        .mobile-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-nav-list li {
+            margin-bottom: 1rem;
+        }
+
+        .mobile-nav-list a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: #333;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .mobile-nav-list a:hover {
+            background: #558580;
+            color: white;
+            transform: translateX(10px);
+            border-left-color: #C27D37;
+            box-shadow: 0 4px 15px rgba(85, 133, 128, 0.3);
+        }
+
+        .mobile-nav-list a:active {
+            transform: translateX(5px);
+        }
+
+        .mobile-nav-list a.active {
+            background: #558580;
+            color: white;
+            border-left-color: #C27D37;
+            box-shadow: 0 4px 15px rgba(85, 133, 128, 0.3);
+        }
+
+        .mobile-nav-footer {
+            padding-top: 2rem;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .mobile-nav-footer .btn {
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-footer .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(85, 133, 128, 0.4);
+        }
+
+        /* Hide desktop navigation on mobile */
+        @media (max-width: 991px) {
+            .navmenu {
+                display: none !important;
+            }
+            
+            .mobile-nav-toggle {
+                display: block;
+            }
+            
+            .header .btn-getstarted {
+                display: none;
+            }
+        }
+
+        /* Show desktop navigation on larger screens */
+        @media (min-width: 992px) {
+            .mobile-nav-toggle {
+                display: none;
+            }
+            
+            .navmenu {
+                display: block !important;
+            }
+            
+            .header .btn-getstarted {
+                display: inline-block;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero-title {
+                font-size: 2.2rem !important; /* Adjusted for smaller screens */
+                text-shadow: 1px 1px 2px #558580;
+                text-align: center;
+                line-height: 1.2;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+                text-align: center;
+            }
+
+            .header .logo .sitename {
+                font-size: 1.4rem; /* Adjust logo text size */
+            }
+
+            #header {
+                padding: 10px 0;
+            }
+            
+            .top-bar {
+                padding: 8px 0;
+            }
+            
+            .top-bar .container {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .top-bar .contact-info {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .top-bar .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem !important; /* Further adjustment for very small screens */
+                text-align: center;
+            }
+            
+            .header .logo .sitename {
+                font-size: 1.2rem;
+            }
+            
+            .top-bar .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+            }
+            
+            .top-bar .contact-info a {
+                font-size: 10px;
+            }
+            
+            .top-bar .social-links a {
+                font-size: 12px;
+                padding: 4px;
+                margin: 0 2px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .hero-title {
+                font-size: 1.6rem !important;
+            }
+            
+            .hero-description {
+                font-size: 0.85rem;
+            }
+            
+            .header .logo .sitename {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
 </head>
 
 <body class="index-page loading">
@@ -149,6 +463,11 @@
             <span class="sitename ms-2" style="color: #558580;">Esra Institute</span>
         </a>
 
+        <!-- Mobile Navigation Toggle -->
+        <div class="mobile-nav-toggle d-lg-none">
+            <i class="bi bi-list"></i>
+        </div>
+
         <nav id="navmenu" class="navmenu">
             <ul class="d-flex flex-wrap justify-content-center">
                 <li><a href="#hero" class="active">Home</a></li>
@@ -160,6 +479,35 @@
         <a class="btn-getstarted" href="#enrollment" style="background-color: #558580; color: white;">Get Started</a>
     </div>
 </header>
+
+<!-- Mobile Navigation Modal -->
+<div class="modal fade" id="mobileNavModal" tabindex="-1" aria-labelledby="mobileNavModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <div class="d-flex align-items-center">
+                    <img src="{{ asset('2.svg') }}" alt="Esra Academy Logo" style="width: 40px; height: 40px;">
+                    <span class="sitename ms-2" style="color: #558580; font-size: 1.2rem; font-weight: 600;">Esra Institute</span>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <nav class="mobile-nav">
+                    <ul class="mobile-nav-list">
+                        <li><a href="#hero" data-bs-dismiss="modal">Home</a></li>
+                        <li><a href="#pricing" data-bs-dismiss="modal">Pricing</a></li>
+                        <li><a href="#team" data-bs-dismiss="modal">Team</a></li>
+                        <li><a href="{{ route('blog.index') }}" data-bs-dismiss="modal">Blog</a></li>
+                        <li><a href="#contact" data-bs-dismiss="modal">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-nav-footer mt-4">
+                    <a href="#enrollment" class="btn btn-primary w-100" data-bs-dismiss="modal" style="background-color: #558580; color: white; padding: 12px 30px; font-size: 1.1rem;">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <main class="main">
 
@@ -1953,174 +2301,6 @@
         <i class="bi bi-whatsapp"></i>
     </a>
 
-    <style>
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 40px;
-            right: 40px;
-            background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 3px #999;
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .whatsapp-float:hover {
-            color: white;
-            transform: scale(1.1);
-            transition: transform 0.3s ease;
-        }
-
-        /* Ensure GIF loops properly */
-        .hero-img {
-            animation: none !important; /* Remove any conflicting animations */
-        }
-
-        /* Fallback for GIF loading */
-        .hero-img[src*=".gif"] {
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-        }
-
-        .top-bar .social-links a {
-            transition: transform 0.3s ease;
-        }
-
-        .top-bar .social-links a:hover {
-            transform: translateY(-3px);
-        }
-
-        .info-card {
-            background: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease-in-out;
-            height: 100%;
-            text-align: center;
-        }
-
-        .info-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        .info-card .icon-box {
-            margin-bottom: 20px;
-        }
-
-        .info-card .icon-box i {
-            font-size: 48px;
-            color: #558580; /* Use a color from the theme */
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .info-card:hover .icon-box i {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .info-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .info-card p {
-            font-size: 1rem;
-            color: #666;
-        }
-
-        @media (max-width: 767px) {
-            .hero-title {
-                font-size: 2.2rem !important; /* Adjusted for smaller screens */
-                text-shadow: 1px 1px 2px #558580;
-                text-align: center;
-                line-height: 1.2;
-            }
-
-            .hero-description {
-                font-size: 1rem;
-                text-align: center;
-            }
-
-            .header .logo .sitename {
-                font-size: 1.4rem; /* Adjust logo text size */
-            }
-
-            #header {
-                padding: 10px 0;
-            }
-            
-            .top-bar {
-                padding: 8px 0;
-            }
-            
-            .top-bar .container {
-                flex-direction: column;
-                gap: 8px;
-            }
-            
-            .top-bar .contact-info {
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-            
-            .top-bar .social-links {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 1.8rem !important; /* Further adjustment for very small screens */
-                text-align: center;
-            }
-            
-            .header .logo .sitename {
-                font-size: 1.2rem;
-            }
-            
-            .top-bar .contact-info {
-                flex-direction: column;
-                align-items: center;
-                gap: 5px;
-            }
-            
-            .top-bar .contact-info a {
-                font-size: 10px;
-            }
-            
-            .top-bar .social-links a {
-                font-size: 12px;
-                padding: 4px;
-                margin: 0 2px;
-            }
-        }
-        
-        @media (max-width: 360px) {
-            .hero-title {
-                font-size: 1.6rem !important;
-            }
-            
-            .hero-description {
-                font-size: 0.85rem;
-            }
-            
-            .header .logo .sitename {
-                font-size: 1.1rem;
-            }
-        }
-    </style>
-
     <!-- Vendor JS Files -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
@@ -2277,6 +2457,75 @@
             window.addEventListener('load', () => {
                 setTimeout(hideLoadingSpinner, 500);
             });
+        });
+
+        // Mobile Navigation Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+            const mobileNavModal = new bootstrap.Modal(document.getElementById('mobileNavModal'));
+
+            // Open mobile navigation modal when toggle is clicked
+            if (mobileNavToggle) {
+                mobileNavToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    mobileNavModal.show();
+                });
+            }
+
+            // Handle smooth scrolling for mobile navigation links
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-list a[href^="#"]');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        e.preventDefault();
+                        
+                        // Close modal first
+                        mobileNavModal.hide();
+                        
+                        // Smooth scroll to target after modal closes
+                        setTimeout(() => {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }, 300);
+                    }
+                });
+            });
+
+            // Add active class to current section in mobile navigation
+            function updateMobileNavActive() {
+                const sections = document.querySelectorAll('section[id]');
+                const mobileNavLinks = document.querySelectorAll('.mobile-nav-list a[href^="#"]');
+                
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.offsetHeight;
+                    const scrollPosition = window.scrollY;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                
+                mobileNavLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSection}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            // Update active section on scroll
+            window.addEventListener('scroll', updateMobileNavActive);
+            
+            // Initial update
+            updateMobileNavActive();
         });
     </script>
 
